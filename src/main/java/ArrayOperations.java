@@ -18,15 +18,28 @@ public class ArrayOperations {
     /**
      * Prints out the numbers array.
      */
-    public void print() {
-
+    public void print(){
+    for (int element : numbers) {
+        System.out.print(element + " ");
+    }
     }
 
     /**
      * @return the sorted numbers array.
      */
     public int[] sort() {
-        return null;
+        int temp;
+        for (int i = 1; i < numbers.length; i++) {
+            for (int j = 0; j <numbers.length-1; j++) {
+                if (numbers[j] > numbers[j+1]) {
+                    temp = numbers[j];
+                    numbers[j] = numbers[j+1];
+                    numbers[j+1] = temp;
+                }
+            }
+        }
+        System.out.println(numbers);
+       return numbers;
     }
 
     /**
@@ -37,14 +50,19 @@ public class ArrayOperations {
      * @see <a href="sorting algortihms">http://faculty.cs.niu.edu/~hutchins/csci241/sorting.htm</a>
      */
     public int[] revertSort() {
-        return null;
+
+        int[] numb = sort();
+        numb = reverse(numb);
+
+
+        return numb;
     }
 
     /**
      * @return the unsorted array in reverted order.
      */
     public int[] reverted() {
-        return null;
+        return reverse(this.numbers);
     }
 
     /**
@@ -52,6 +70,12 @@ public class ArrayOperations {
      * @return true if the array contains the value, false otherwise.
      */
     public boolean contains(int value) {
+
+        for(int i = 0; i < numbers.length; i++) {
+            if (value == numbers[i]) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -59,28 +83,43 @@ public class ArrayOperations {
      * @return the average value of all elements summed up.
      */
     public double average() {
-        return 0.0;
+        double sum = 0;
+        for (int i =0; i < numbers.length; i++) {
+            sum = sum + numbers[i];
+        }
+        return sum / numbers.length;
     }
 
     /**
      * @return the average value of all elements summed up, but without the highest and the lowest value.
      */
     public double trimmedMean() {
-        return 0.0;
+
+        int[] numb =sort();
+        double sum = 0;
+        for (int i = 1; i <= numb.length-2; i++ ) {
+            sum = sum + numb[i];
+        }
+        return sum / (numb.length-2);
     }
 
     /**
      * @return the max value of the array. In the array [1,9,3] max would be 9.
      */
     public int maxValue() {
-        return 0;
+
+        int[] numb = sort();
+
+        return numb[numb.length-1];
     }
 
     /**
      * @return the min value of the array. In the array [1,9,3] min would be 1.
      */
     public int minValue() {
-        return 0;
+        int[] numb = sort();
+
+        return numb[0];
     }
     
      /* **********************************************************
@@ -88,7 +127,11 @@ public class ArrayOperations {
      *   you like.                                               *
      * ***********************************************************/
 
-    private void someHelper() {
-        // ...
+    private  int[] reverse(int[] numbers){
+        int[] tamp = new int[numbers.length];
+        for (int i = numbers.length-1; i >= 0; i--) {
+            tamp[numbers.length-1 -i] = numbers[i];
+        }
+        return tamp;
     }
 }
