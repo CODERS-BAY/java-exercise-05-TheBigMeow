@@ -1,7 +1,7 @@
 # ArrayOperations
-# Name:
-# GitHub Username:
-# Team:
+# Name: Julia
+# GitHub Username: TheBigMeow
+# Team: Yolo solo
 
 Your task is to implement the given methods in the `ArrayOperations` class. 
 
