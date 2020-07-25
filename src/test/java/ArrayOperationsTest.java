@@ -30,12 +30,7 @@ class ArrayOperationsTest {
 
     @org.junit.jupiter.api.Test
     void print() {
-        System.out.println("This is just a visual test. " +
-                "It does print the unsorted array in this test");
-        System.out.println("It should look like this:");
         System.out.println(Arrays.toString(numbers));
-        System.out.println("=========");
-        System.out.println("Your output is: ");
         instance.print();
     }
 
@@ -45,7 +40,7 @@ class ArrayOperationsTest {
         Arrays.sort(expected);
         int[] result = instance.sort();
         assertArrayEquals(expected, result);
-        printArrays("sort", expected, result);
+        printArrays("sort:", expected, result);
     }
 
     @org.junit.jupiter.api.Test
@@ -53,7 +48,7 @@ class ArrayOperationsTest {
         Arrays.sort(numbers);
         int[] expected = new int[numbers.length];
         int index = 0;
-        for (int i = numbers.length - 1; i > 0; i--) {
+        for (int i = numbers.length - 1; i >= 0; i--) {
             expected[index++] = numbers[i];
         }
 
@@ -67,7 +62,7 @@ class ArrayOperationsTest {
         int[] expected = new int[unsorted.length];
 
         int index = 0;
-        for (int i = unsorted.length - 1; i > 0; i--) {
+        for (int i = unsorted.length - 1; i >= 0; i--) {
             expected[index++] = unsorted[i];
         }
         int[] result = instance.reverted();
@@ -100,7 +95,7 @@ class ArrayOperationsTest {
     void trimmedMean() {
         double expected = (getSum() - getMax() - getMin()) / (ELEMENTS - 2);
         double result = instance.trimmedMean();
-        printValues("trimmedMean", expected, result);
+        printValues("trimmedMean:", expected, result);
 
         assertEquals(expected, result);
     }
@@ -134,7 +129,7 @@ class ArrayOperationsTest {
 
     private void printValues(String current, double expected, double result) {
         System.out.println(current);
-        System.out.println("expected: \t" + expected);
+        System.out.println("expected:" + expected);
         System.out.println("result: \t" + result);
     }
 
@@ -145,6 +140,7 @@ class ArrayOperationsTest {
         }
         return sum;
     }
+
 
     private int getMin() {
         Integer[] arr = Arrays.stream(numbers).boxed().toArray(Integer[]::new);
